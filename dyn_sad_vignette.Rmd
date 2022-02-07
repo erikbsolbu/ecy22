@@ -1,5 +1,5 @@
 ---
-title: "Analyzing Dynamic Species Abundance Distributions using GLMM"
+title: "Appendix S6: Fish data case study"
 output:
   # bookdown::pdf_document2:
   pdf_document:
