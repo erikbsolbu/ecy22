@@ -1,5 +1,9 @@
 ---
 title: "Appendix S6: Fish data case study"
+header-includes:
+- \newcommand{\beginsupplement}{ \setcounter{table}{3} \renewcommand{\thetable}{S\arabic{table}}
+  \setcounter{figure}{9} \renewcommand{\thefigure}{S\arabic{figure}}
+  \setcounter{section}{0} \renewcommand{\thesection}{S\arabic{section}}}
 output:
   # bookdown::pdf_document2:
   pdf_document:
@@ -20,6 +24,12 @@ library(foreach)
 library(parallel)
 library(doParallel)
 ```
+
+\beginsupplement
+
+\setcounter{equation}{12}
+
+\renewcommand{\theequation}{Eq. S\arabic{equation}}
 
 # Introduction and data preparation
 
