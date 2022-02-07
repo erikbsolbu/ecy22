@@ -15,6 +15,10 @@ library(doParallel)
 # selects the data set and then writes this data set back to the working folder
 # for easy access later.
 
+# Here is also a direct link to the data set, but note that the code below uses
+# the unzipped data file above:
+# https://biotime.st-andrews.ac.uk/selectStudy.php?study=467
+
 # un-comment the first time the data has been downloaded
 # BioTIMEQuery_24_06_2021 <- read_csv("biotime/BioTIMEQuery_24_06_2021.csv")
 # 
