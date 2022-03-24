@@ -64,9 +64,10 @@ fig02 <- res_long %>%
                    fill = as.factor(tgamma))) +
   # True values as red stars
   geom_point(data = tv_points,
-             colour = "red",
-             shape = 8,
-             size = 3) +
+             colour = "steelblue",
+             shape = 4,
+             size = 3,
+             stroke = 1.1) +
   # Organize in gird
   facet_grid(name ~ eta,
              scales = "free_y",

@@ -15,10 +15,6 @@ library(doParallel)
 # selects the data set and then writes this data set back to the working folder
 # for easy access later.
 
-# Here is also a direct link to the data set, but note that the code below uses
-# the unzipped data file above:
-# https://biotime.st-andrews.ac.uk/selectStudy.php?study=516
-
 # un-comment the first time the data has been downloaded
 # BioTIMEQuery_24_06_2021 <- read_csv("biotime/BioTIMEQuery_24_06_2021.csv")
 # 
@@ -894,11 +890,15 @@ bats_cor_01_xbar <- bats_est_01 %>%
   ungroup()
 
 # Fragmented interior
-
+f_temp_xbar_cor_a <- function(data){
+  tibble(time = time,
+         cor = (data$sc2 * exp(-data$gamma_c * time)) /
+           (data$sc2 + data$su2))
+}
 bats_cor_01_xbar_a <- bats_est_01_a %>% 
   group_by(rep) %>% 
   nest() %>% 
-  mutate(cor = map(data, f_temp_xbar_cor)) %>% 
+  mutate(cor = map(data, f_temp_xbar_cor_a)) %>% 
   dplyr::select(-data) %>% 
   unnest(cor) %>% 
   ungroup()
@@ -973,12 +973,17 @@ bats_cor_02_xbar <- bats_est_02 %>%
   ungroup()
 
 # Fragmented interior
-
+f_space_xbar_cor_a <- function(data, distance){
+  distance = distance
+  tibble(distance = distance,
+         cor = (data$sc2 * exp(- data$alpha_c * distance)) / 
+           (data$sc2 + data$su2))
+}
 # Compute the correlation for each replicate
 bats_cor_02_xbar_a <- bats_est_02_a %>% 
   group_by(rep) %>% 
   nest() %>% 
-  mutate(cor = map(data, f_space_xbar_cor, distance_a)) %>% 
+  mutate(cor = map(data, f_space_xbar_cor_a, distance_a)) %>% 
   dplyr::select(-data) %>% 
   unnest(cor) %>% 
   ungroup()
@@ -1352,6 +1357,6 @@ rm(list = c("boot",
             "p1_data", "p1_data_est", "p2_data", "p2_data_est",
             "f_sim_and_est_1", "f_sim_and_est_1_a", "f_sim_and_est_1_b",
             "f_sim_and_est_2", "f_sim_and_est_2_a", "f_sim_and_est_2_b",
-            "f_space_cor",
-            "f_space_xbar_cor",
-            "f_temp_cor", "f_temp_xbar_cor"))
+            "f_space_cor", 
+            "f_space_xbar_cor", "f_space_xbar_cor_a",
+            "f_temp_cor", "f_temp_xbar_cor", "f_temp_xbar_cor_a"))

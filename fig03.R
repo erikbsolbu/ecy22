@@ -112,9 +112,10 @@ fig03 <- res_long_p1 %>%
                    fill = as.factor(eta))) +
   # True values as red stars
   geom_point(data = tv_points,
-             colour = "red",
-             shape = 8,
-             size = 3) +
+             colour = "steelblue",
+             shape = 4,
+             size = 3,
+             stroke = 1.1) +
   # Organize the plot along the new grouping variable
   facet_wrap(~ name2,
              scales = "free_y",
